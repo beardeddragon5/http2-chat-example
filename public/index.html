@@ -1,28 +1,24 @@
 <html>
-<head>
-  <meta charset="utf-8"/>
-  <link href="simple.css" rel="stylesheet">
-  <script src="script.js"/></script>
-</head>
-<body>
-  <h1>HTTP2 Chat</h1>
-  <h4>Username:</h4>
-  <div id="userName"></div>
-  <br/>
-  <button onClick="enterChat()">Enter chat</button>
-  <button onClick="quitChat()">Quit chat</button>
-  <br/>
-  <br/>
-  <h4>Users:</h4>
-  <div id="userList"></div>
-  <br/>
-  <h4>Chat:</h4>
-  <div id="chat"></div>
-  <br/>
-  <h4>Message:</h4>
-  <input type="text" id="msg" value="">
-  <button onClick="sendMsg()">Send message</button>
-  <br/>
-  <br/>
-</body>
+  <head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href="simple.css" rel="stylesheet" />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="panel panel-primary form-group">
+        <div class="panel-body body-panel">
+            <ul id="chat" class="chat">
+
+            </ul>
+        </div>
+        <div class="panel-footer clearfix">
+            <input id="msg" class="form-control" type="text"></input>
+            <span class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-xs-12" style="margin-top: 10px">
+                <button class="btn btn-warning btn-lg btn-block" id="btn-chat" onclick="sendMsg()">Send</button>
+            </span>
+        </div>
+    </div>
+  </body>
 </html>

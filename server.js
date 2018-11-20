@@ -12,9 +12,6 @@ const PUBLIC_PATH = path.join(__dirname, './public')
 
 const publicFiles = helper.getFiles(PUBLIC_PATH)
 
-
-
-
 // Push file
 function push (stream, path) {
   const file = publicFiles.get(path)
@@ -48,7 +45,7 @@ const broadCastDel = (user) => {
 // Request handler
 const onRequest = (req, res) => {
   // console.log('httpVersion', req.httpVersion)
-  
+
   const reqPath = req.headers[':path'] === '/' ? '/index.html' : req.headers[':path'];
   const file = publicFiles.get(reqPath);
 
@@ -66,7 +63,7 @@ const onRequest = (req, res) => {
       res.stream.end();
       return;
     }
-    
+
     let jsonString = '';
     req.on('data', (data) => {
         jsonString += data;
@@ -94,16 +91,16 @@ const onRequest = (req, res) => {
 
     clients[cookies.user] = res;  // <- Add this client to the broadcast list
     broadCastAdd(cookies.user);
-    
+
     ((clientId) => {
       req.on("close", () => { // <- Remove this client when he disconnects
         delete clients[clientId]
         broadCastDel(clientId);
-      });  
-    })(cookies.user);      
+      });
+    })(cookies.user);
     return;
   }
-  
+
   // File not found
   if (!file) {
     res.stream.respond({ 'content-type': 'text/html', ':status': 404 });
@@ -119,7 +116,7 @@ const onRequest = (req, res) => {
 
   // Serve file
   res.stream.respondWithFD(file.fileDescriptor, file.headers)
-  
+
   req.on('finish', () => console.log('con closed'))
 }
 
