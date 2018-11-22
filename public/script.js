@@ -3,14 +3,31 @@
 let source = null;
 let username = null;
 
-const chatOther = (user, message) => `<span class="chat-img pull-left">
-<img src="https://randomuser.me/api/portraits/thumb/women/${user.charCodeAt(0)}.jpg" alt="User Avatar" class="img-circle" /></span>
-<div class="chat-body clearfix"><div class="header"><strong class="primary-font">${user}</strong></div><p>${message}</p></div>`;
+const chatOther = (user, message) => `
+<div class="container">
+  <div class="row">
+    <figure class="col-2 text-center">
+      <img src="https://randomuser.me/api/portraits/thumb/women/${user.charCodeAt(0)}.jpg" alt="User Avatar" class="mx-auto rounded-circle border border-dark" />
+      <figcaption class="primary-font mx-auto">${user}</figcaption>
+    </figure>
+    <div class="col-10">
+      ${message}
+    </div>
+  </div>
+</div>`;
 
-const chatMe = (user, message) => `<span class="chat-img pull-right">
-<img src="https://randomuser.me/api/portraits/thumb/men/${user.charCodeAt(0)}.jpg" alt="User Avatar" class="img-circle" /></span>
-<div class="chat-body clearfix"><div class="header">
-<small class=" text-muted">&nbsp;</small><strong class="pull-right primary-font">${user}</strong></div><p>${message}</p></div>`;
+const chatMe = (user, message) => `
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      ${message}
+    </div>
+    <figure class="col-2 text-center">
+      <img src="https://randomuser.me/api/portraits/thumb/men/${user.charCodeAt(0)}.jpg" alt="User Avatar" class="rounded-circle border border-dark" />
+      <figcaption class="primary-font">${user}</figcaption>
+    </figure>
+  </div>
+</div>`;
 
 const chatStatus = (message) => `<div class="chat-body clearfix">
 <div class="header"><small class=" text-muted">${message}</small></div></div>`;
@@ -72,7 +89,7 @@ function enterChat() {
   document.cookie = `user=${username}`;
 
   source = new EventSource("/register");
-  source.onerror = e => statusMessage('EventSource error:' + JSON.stringify(e));
+  source.onerror = e => setTimeout(() => location.reload(), 1000);
 
   source.addEventListener("info", (e) => {
     const m = JSON.parse(e.data);

@@ -1,6 +1,6 @@
 <html>
   <head>
-    <script src="jquery-1.11.1.min.js"></script>
+    <script src="jquery-3.3.1.slim.min.js"></script>
     <link href="bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="bootstrap.min.js"></script>
     <link href="simple.css" rel="stylesheet" />
@@ -8,18 +8,19 @@
     <script src="script.js"></script>
   </head>
   <body>
-    <div class="panel panel-primary form-group">
-        <div class="panel-body body-panel">
-            <ul id="chat" class="chat">
-
-            </ul>
+    <main role="main" class="container">
+      <ul id="chat" class="chat">
+      </ul>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        <div class="input-group">
+          <input id="msg" class="form-control" type="text"></input>
+          <div class="input-group-append">
+            <button class="btn btn-warning" type="button" onclick="sendMsg()">Send</button>
+          </div>
         </div>
-        <div class="panel-footer clearfix">
-            <input id="msg" class="form-control" type="text"></input>
-            <span class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-xs-12" style="margin-top: 10px">
-                <button class="btn btn-warning btn-lg btn-block" id="btn-chat" onclick="sendMsg()">Send</button>
-            </span>
-        </div>
-    </div>
+      </div>
+    </footer>
   </body>
 </html>
