@@ -4,7 +4,7 @@
   "description": "HTTP/2 Push example",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "while [ true ]; do node server.js; done",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "remrob",
