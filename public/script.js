@@ -21,6 +21,11 @@ window.onload = () => {
   if (source) loadUsers();
 }
 
+window.onunload = () => {
+  source.close();
+  document.cookie = `user=`;
+}
+
 window.onkeypress = (ev) => ev.code === 'Enter' ? sendMsg() : undefined;
 
 function sendMsg() {
@@ -61,11 +66,6 @@ function loadUsers() {
   fetch('/users')
     .then(response => response.json())
     .then(usernames => statusMessage(`${usernames.length} user in chat`));
-}
-
-function quitChat() {
-  source.close();
-  document.cookie = `user=`;
 }
 
 function enterChat() {
